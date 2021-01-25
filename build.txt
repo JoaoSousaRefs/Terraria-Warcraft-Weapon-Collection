@@ -1,0 +1,3 @@
+displayName = Warcraft Weapons Collection
+author = OHomemCagarro
+version = 0.1
