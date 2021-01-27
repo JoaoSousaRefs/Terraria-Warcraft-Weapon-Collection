@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using warcraftweaponscollection.Items.Materials;
 using warcraftweaponscollection.Utils;
 
 namespace warcraftweaponscollection.Items
@@ -16,8 +17,6 @@ namespace warcraftweaponscollection.Items
 			DisplayName.SetDefault("Cataclysm's Edge"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
 			Tooltip.SetDefault("Chance on hit: Set the target Burning. \n" +
 				"Attacking Burning enemies results in a critical hit.");
-			
-			
 		}
 
 		public override void SetDefaults()
@@ -46,6 +45,7 @@ namespace warcraftweaponscollection.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.DirtBlock, 1);
+            recipe.AddIngredient(ModContent.ItemType<emberLegion>(), 1);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
