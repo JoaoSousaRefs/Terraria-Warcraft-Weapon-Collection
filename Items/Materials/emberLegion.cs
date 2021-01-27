@@ -26,14 +26,17 @@ namespace warcraftweaponscollection.Items.Materials
             item.rare = ItemRarityID.Red;
         }
 
-        
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.DirtBlock, 1);
             recipe.SetResult(this);
             recipe.AddRecipe();
+        }
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            Lighting.AddLight(item.position, 0.50f, 2.5f, 0.35f);
         }
     }
 }

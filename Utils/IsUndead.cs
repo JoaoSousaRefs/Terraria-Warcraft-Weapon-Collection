@@ -102,28 +102,20 @@ namespace warcraftweaponscollection.Utils
 					return true;
 				case NPCID.UndeadMiner:
 					return true;
-					
 				case NPCID.UndeadViking:
 					return true;
-					
 				case NPCID.Skeleton:
 					return true;
-					
 				case NPCID.SkeletonAlien:
 					return true;
-					
 				case NPCID.SkeletonArcher:
 					return true;
-					
 				case NPCID.SkeletonAstonaut:
 					return true;
-					
 				case NPCID.SkeletonCommando:
 					return true;
-					
 				case NPCID.SkeletonMerchant:
 					return true;
-					
 				case NPCID.SkeletonSniper:
 					return true;
 					

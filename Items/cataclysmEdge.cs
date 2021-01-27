@@ -14,7 +14,7 @@ namespace warcraftweaponscollection.Items
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cataclysm's Edge"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			DisplayName.SetDefault("Cataclysm's Edge");
 			Tooltip.SetDefault("Chance on hit: Set the target Burning. \n" +
 				"Attacking Burning enemies results in a critical hit.");
 		}
@@ -38,7 +38,7 @@ namespace warcraftweaponscollection.Items
 			item.value = Item.sellPrice(gold: 150);
 			item.rare = ItemRarityID.Purple;
 
-			item.UseSound = SoundID.DD2_OgreGroundPound;
+			item.UseSound = SoundID.Item1;
 		}
 
 		public override void AddRecipes()
@@ -53,15 +53,12 @@ namespace warcraftweaponscollection.Items
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
 		{
-			Random mathRandom = new Random();
-			var debuffChange = mathRandom.Next(1, 100);
-
-			//theres a 25% chance per hit to apply Onfire debuff
-            if (debuffChange < 50 && debuffChange > 25)
+            //theres a 25% chance per hit to apply Onfire debuff
+            if (ChanceGenerator.Chance(25))
             {
 				target.AddBuff(BuffID.OnFire, 160);
-            }
-            
+				
+            }   
 		}
 
         public override void ModifyHitNPC(Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)

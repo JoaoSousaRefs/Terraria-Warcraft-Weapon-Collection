@@ -8,11 +8,18 @@ namespace warcraftweaponscollection.Utils
 {
    public class ChanceGenerator
     {
-        public static bool Chance(int oneInHowMany)
+        public static bool Chance(int percentage)
         {
             Random mathRandom = new Random();
-            var chance = mathRandom.Next(1, oneInHowMany);
-            return chance == 1;
+            var numberGenerated = mathRandom.Next(1, 100);
+
+            
+            if (numberGenerated <= percentage)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
