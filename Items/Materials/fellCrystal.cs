@@ -7,23 +7,25 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using warcraftweaponscollection.Utils;
 
+
 namespace warcraftweaponscollection.Items.Materials
 {
-    public class emberLegion : ModItem
+    public class fellCrystal : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ancient Ember of the Legion");
-            Tooltip.SetDefault("It feels strange, but powerfull");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(10,3));
+            DisplayName.SetDefault("Fell Crystal");
+            Tooltip.SetDefault("This tiny crystal has a very strong feel to him");
+            
         }
 
         public override void SetDefaults()
         {
-            item.Size = new Vector2(30);
+            item.scale = 20;
+            item.Size = new Vector2(20);
             item.value = Item.sellPrice(platinum: 15);
             item.rare = ItemRarityID.Red;
-            item.stack = 99;
+            item.stack = 199;
         }
 
         //The Recipe is for Tests only, the finish item will be a drop item only
@@ -37,7 +39,7 @@ namespace warcraftweaponscollection.Items.Materials
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Lighting.AddLight(item.position, 0.50f, 2.5f, 0.35f);
+            Lighting.AddLight(item.position, 0.48f, 2.2f, 0.33f);
         }
     }
 }

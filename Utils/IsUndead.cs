@@ -10,6 +10,8 @@ namespace warcraftweaponscollection.Utils
 {
     public class IsUndead
     {
+
+		//Stupid long switch case to identify if NPC is considereted undead
 		public static bool isUndead(NPC target)
 		{
 			switch (target.type)

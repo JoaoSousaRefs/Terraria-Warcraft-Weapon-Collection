@@ -44,9 +44,10 @@ namespace warcraftweaponscollection.Items
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.DirtBlock, 1);
             recipe.AddIngredient(ModContent.ItemType<emberLegion>(), 1);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddIngredient(ModContent.ItemType<fellCrystal>(), 100);
+			recipe.AddIngredient(ModContent.ItemType<brokenLegionSword>(), 1);
+			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
@@ -54,7 +55,7 @@ namespace warcraftweaponscollection.Items
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
 		{
             //theres a 25% chance per hit to apply Onfire debuff
-            if (ChanceGenerator.Chance(25))
+            if (Generators.Chance(25))
             {
 				target.AddBuff(BuffID.OnFire, 160);
 				
@@ -78,7 +79,19 @@ namespace warcraftweaponscollection.Items
 					Main.dust[dust].noGravity = true;
 					Main.dust[dust].velocity.X += player.direction * 2f;
 					Main.dust[dust].velocity.Y += 0.2f;
+
+					Lighting.AddLight(item.position, 0.50f, 2.5f, 0.35f);
 			}
+
 		}
-	}
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            base.PostDrawInWorld(spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
+			Lighting.AddLight(item.position, 2.50f, 0.5f, 0.35f);
+		}
+
+
+
+    }
 }
