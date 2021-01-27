@@ -14,8 +14,8 @@ namespace warcraftweaponscollection.Items.Materials
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ancient Ember of the Legion");
-            Tooltip.SetDefault("It feels strange, but powerfull");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(10,3));
+            Tooltip.SetDefault("It feels strange, chaotic, wrong but so powerfull");
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(11,3));
         }
 
         public override void SetDefaults()
@@ -23,16 +23,7 @@ namespace warcraftweaponscollection.Items.Materials
             item.Size = new Vector2(30);
             item.value = Item.sellPrice(platinum: 15);
             item.rare = ItemRarityID.Red;
-            item.stack = 99;
-        }
-
-        //The Recipe is for Tests only, the finish item will be a drop item only
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.DirtBlock, 1);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            item.maxStack = 1;
         }
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)

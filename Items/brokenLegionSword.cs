@@ -13,7 +13,7 @@ namespace warcraftweaponscollection.Items
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Broken Legion Sword"); // By default, capitalization in classnames will add spaces to the display name. You can customize the display name here by uncommenting this line.
+			DisplayName.SetDefault("Broken Legion Sword"); 
 			Tooltip.SetDefault("Strange broken sword");
 		}
 
@@ -21,10 +21,9 @@ namespace warcraftweaponscollection.Items
 		{
 			item.Size = new Vector2(80);
 
-			item.damage = 80;
+			item.damage = 5;
 			item.knockBack = 1;
 			item.melee = true;
-			item.magic = false;
 
 			item.useTime = 30;
 			item.useAnimation = 30;
@@ -36,15 +35,6 @@ namespace warcraftweaponscollection.Items
 			item.rare = ItemRarityID.Gray;
 
 			item.UseSound = SoundID.Item1;
-		}
-
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
 		}
 
 	}

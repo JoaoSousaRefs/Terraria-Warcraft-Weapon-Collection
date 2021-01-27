@@ -15,31 +15,20 @@ namespace warcraftweaponscollection.Items.Materials
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fell Crystal");
-            Tooltip.SetDefault("This tiny crystal has a very strong feel to him");
-            
+            Tooltip.SetDefault("This tiny crystal has a very strong evil aura to it");
         }
 
         public override void SetDefaults()
         {
-            item.scale = 20;
             item.Size = new Vector2(20);
             item.value = Item.sellPrice(platinum: 15);
             item.rare = ItemRarityID.Red;
-            item.stack = 199;
-        }
-
-        //The Recipe is for Tests only, the finish item will be a drop item only
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.DirtBlock, 1);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            item.maxStack = 999;
         }
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Lighting.AddLight(item.position, 0.48f, 2.2f, 0.33f);
+            Lighting.AddLight(item.position, 0.48f, 2f, 0.33f);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using warcraftweaponscollection.Items.Materials;
@@ -27,10 +28,10 @@ namespace warcraftweaponscollection.Items
 			item.knockBack = 10;
 			item.melee = true;
 			item.magic = true;
-			item.crit = 5;
+			item.crit = 7;
 
-			item.useTime = 50;
-			item.useAnimation = 50;
+			item.useTime = 45;
+			item.useAnimation = 45;
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useTurn = true;
 			item.autoReuse = true;
@@ -58,7 +59,6 @@ namespace warcraftweaponscollection.Items
             if (Generators.Chance(25))
             {
 				target.AddBuff(BuffID.OnFire, 160);
-				
             }   
 		}
 
@@ -79,10 +79,7 @@ namespace warcraftweaponscollection.Items
 					Main.dust[dust].noGravity = true;
 					Main.dust[dust].velocity.X += player.direction * 2f;
 					Main.dust[dust].velocity.Y += 0.2f;
-
-					Lighting.AddLight(item.position, 0.50f, 2.5f, 0.35f);
 			}
-
 		}
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
@@ -90,8 +87,6 @@ namespace warcraftweaponscollection.Items
             base.PostDrawInWorld(spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
 			Lighting.AddLight(item.position, 2.50f, 0.5f, 0.35f);
 		}
-
-
 
     }
 }
