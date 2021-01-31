@@ -1,14 +1,67 @@
-﻿
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using warcraftweaponscollection.Buffs;
+using warcraftweaponscollection.Dusts;
 using warcraftweaponscollection.Items;
 using warcraftweaponscollection.Items.Materials;
 using warcraftweaponscollection.Utils;
+
 namespace warcraftweaponscollection.Misc
 {
-    public class globalNPC: GlobalNPC
+    public class GlobalModNPC: GlobalNPC
     {
+        public override bool InstancePerEntity => true;
+        public bool eFlames = false;
+
+        //public override void OnHitByProjectile(NPC npc, Terraria.Projectile projectile, int damage, float knockback, bool crit)
+        //{
+        //    if (projectile.type == ModContent.ProjectileType<Projectile.starArrow>())
+        //    {
+        //        npc.AddBuff(ModContent.BuffType<Holyfire>(), 160);
+        //    }
+        //}
+
+        public override void UpdateLifeRegen(NPC npc, ref int damage)
+        {
+           
+            if (eFlames)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 50;
+                if (damage < 50)
+                {
+                    damage = 50;
+                }
+            }
+        }
+
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            if (eFlames)
+            {
+                if (Main.rand.Next(4) < 3)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<Dusts.starfire>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.NextBool(4))
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.1f, 0.2f, 0.7f);
+            }
+        }
         public override void NPCLoot(NPC npc)
         {
             switch (npc.type)
@@ -53,6 +106,14 @@ namespace warcraftweaponscollection.Misc
                 case NPCID.EyeofCthulhu:
                     //----------------------Cataclysm Edge loot pools ----------------------
                     Item.NewItem(npc.getRect(), ModContent.ItemType<fellCrystal>(), Generators.StackSize(5, 7));
+                    break;
+
+                case NPCID.MoonLordCore:
+                    //----------------------Thori'dal loot pools ----------------------
+                    if (Generators.Chance(50))
+                    {
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<thoridal>(), 1);
+                    }
                     break;
 
                 default:
