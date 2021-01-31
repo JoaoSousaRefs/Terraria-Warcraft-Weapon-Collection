@@ -4,5 +4,6 @@ namespace warcraftweaponscollection
 {
 	public class warcraftweaponscollection : Mod
 	{
+		
 	}
 }

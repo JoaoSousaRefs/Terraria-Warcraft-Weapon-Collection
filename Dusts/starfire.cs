@@ -10,7 +10,7 @@ using warcraftweaponscollection.Utils;
 
 namespace warcraftweaponscollection.Dusts
 {
-    public class holyfire : ModDust
+    public class starfire : ModDust
     {
 		public override void OnSpawn(Dust dust)
 		{
